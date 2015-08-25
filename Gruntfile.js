@@ -241,6 +241,7 @@ module.exports = function (grunt) {
             'styles/{,*/}*.css',
             'styles/fonts/{,*/}*.*',
             '_locales/{,*/}*.json',
+            'scripts/*.js',
           ]
         }]
       }
@@ -316,7 +317,7 @@ module.exports = function (grunt) {
     'concurrent:dist',
     // No UI feature selected, cssmin task will be commented
     // 'cssmin',
-    'concat',
+    // 'concat',
     'uglify',
     'copy',
     'usemin',
