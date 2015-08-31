@@ -4,7 +4,7 @@
     "description": "The name of the application"
   },
   "appDescription": {
-    "message": "Transform and paste tables from your clipboard.",
+    "message": "Transform and paste tables from your clipboard, especially into Jira.",
     "description": "The description of the application"
   }
 }
