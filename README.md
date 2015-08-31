@@ -5,7 +5,7 @@ into Jira.
 
 ## Functions
 
-So far two context menu entries work:
+So far the following context menu entries work:
 
 - Paste Jira markup table
 - Paste Jira escaped markup
