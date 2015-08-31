@@ -242,6 +242,7 @@ module.exports = function (grunt) {
             'styles/fonts/{,*/}*.*',
             '_locales/{,*/}*.json',
             'scripts/*.js',
+            'bower_components/toastr/toastr.css',
           ]
         }]
       }
