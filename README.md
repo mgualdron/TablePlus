@@ -1,6 +1,7 @@
 # TablePlus Chrome Extension
 
-Transform and paste tables (and other markup) from your clipboard.
+Transform and paste tables (and other markup) from your clipboard especially
+into Jira.
 
 ## Functions
 
