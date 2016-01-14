@@ -42,77 +42,39 @@ var localFunctions = function() {
      */
     pub.getJira = function(table) {
         var result = '';
-        if (anyCrRE.test(table)) {
-            var lines = table.split(anyCrRE);
-            record:
-            for (var i = 0; i < lines.length; i++) {
-                var currentLine = lines[i];
-                currentLine = currentLine.replace(endsNlRE,'');
-                currentLine = currentLine.replace(endsQuotRE,'');
-                currentLine = currentLine.replace(anyNlRE,' \\');
-                currentLine = currentLine.replace(tabsRE,'\t \t');
-                currentLine = currentLine.replace(tabsRE,'\t \t');
-                currentLine = currentLine.replace(startTabRE,' \t');
-                currentLine = currentLine.replace(endTabRE,'\t ');
-                currentLine = pub.escapeJira(currentLine);
-                if (i == 0) {
-                    currentLine = currentLine.replace(tabQuotRE, '||');
-                    if (currentLine == "") {
+        var lines = table.split(anyNlRE);
+        record:
+        for (var i = 0; i < lines.length; i++) {
+            var currentLine = lines[i];
+            currentLine = currentLine.replace(tabsRE,'\t \t');
+            currentLine = currentLine.replace(tabsRE,'\t \t');
+            currentLine = currentLine.replace(startTabRE,' \t');
+            currentLine = currentLine.replace(endTabRE,'\t ');
+            currentLine = pub.escapeJira(currentLine);
+            if (i === 0) {
+                currentLine = currentLine.replace(tabQuotRE, '||');
+                if (currentLine === "") {
+                    currentLine = " ";
+                }
+                currentLine = '||' + currentLine + '||\n';
+            }
+            else {
+                currentLine = currentLine.replace(tabQuotRE, '|');
+                if (currentLine == "") {
+                    if (i == lines.length - 1) {
+                        break record;
+                    }
+                    else {
                         currentLine = " ";
                     }
-                    currentLine = '||' + currentLine + '||\n';
                 }
-                else {
-                    currentLine = currentLine.replace(tabQuotRE, '|');
-                    if (currentLine == "") {
-                        if (i == lines.length - 1) {
-                            break record;
-                        }
-                        else {
-                            currentLine = " ";
-                        }
-                    }
-                    currentLine = '|' + currentLine + '|\n';
-                }
-                result += currentLine;
+                currentLine = '|' + currentLine + '|\n';
             }
-        }
-        else {
-            var lines = table.split(anyNlRE);
-            record:
-            for (var i = 0; i < lines.length; i++) {
-                var currentLine = lines[i];
-                currentLine = currentLine.replace(tabsRE,'\t \t');
-                currentLine = currentLine.replace(tabsRE,'\t \t');
-                currentLine = currentLine.replace(startTabRE,' \t');
-                currentLine = currentLine.replace(endTabRE,'\t ');
-                currentLine = pub.escapeJira(currentLine);
-                if (i === 0) {
-                    currentLine = currentLine.replace(tabQuotRE, '||');
-                    if (currentLine === "") {
-                        currentLine = " ";
-                    }
-                    currentLine = '||' + currentLine + '||\n';
-                }
-                else {
-                    currentLine = currentLine.replace(tabQuotRE, '|');
-                    if (currentLine == "") {
-                        if (i == lines.length - 1) {
-                            break record;
-                        }
-                        else {
-                            currentLine = " ";
-                        }
-                    }
-                    currentLine = '|' + currentLine + '|\n';
-                }
-                result += currentLine;
-            }
+            result += currentLine;
         }
 
         return result;
     };
-
 
     return pub;
 };
