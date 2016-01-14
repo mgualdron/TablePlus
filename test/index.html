@@ -15,15 +15,16 @@
     var expect = chai.expect;
     var should = chai.should();
   </script>
+
   <!-- bower:js -->
   <!-- endbower -->
+
   <!-- include source files here... -->
+  <script src="../app/scripts/tableFunctions.js"></script>
+
   <!-- include spec files here... -->
   <script src="spec/test.js"></script>
-  <script>
-    if (navigator.userAgent.indexOf('PhantomJS') === -1) {
-      mocha.run();
-    }
-  </script>
+
+  <script>mocha.run()</script>
 </body>
 </html>
