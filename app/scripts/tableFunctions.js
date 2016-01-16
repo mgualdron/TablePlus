@@ -51,9 +51,9 @@ var localFunctions = function() {
             currentLine = currentLine.replace(startTabRE,' \t');
             currentLine = currentLine.replace(endTabRE,'\t ');
             currentLine = pub.escapeJira(currentLine);
-            if (i === 0) {
+            if (i == 0) {
                 currentLine = currentLine.replace(tabQuotRE, '||');
-                if (currentLine === "") {
+                if (currentLine == "") {
                     currentLine = " ";
                 }
                 currentLine = '||' + currentLine + '||\n';
@@ -75,6 +75,55 @@ var localFunctions = function() {
 
         return result;
     };
+
+
+    /**
+     * Build a 2D array, and transpose it into a single string var
+     */
+    pub.getTranspose = function(table) {
+        var result = 'Col\tField Name';
+        var lines = table.split(anyNlRE);
+        var cells = new Array();
+        record:
+        for (var i = 0; i < lines.length; i++) {
+            var currentLine = lines[i];
+
+            // blank lines at the end:
+            if (currentLine == "" && i == lines.length - 1) {
+                break record;
+            }
+
+            // 2D array:
+            cells[i] = currentLine.split(tabRE);
+
+            // the header:
+            if (i > 0) {
+                result = result + '\tRecord ' + i;
+            }
+        }
+
+        // Put it all togetther in transposed form:
+        // [Assuming every line has the same No. of cols as the first.]
+        // j steps through the columns in the original string
+        // i steps through the rows
+        for (var j = 0; j < cells[0].length; j++) {
+            var col = j + 1;
+            result = result + '\n' + col;
+            for (var i = 0; i < cells.length; i++) {
+                result += '\t' + cells[i][j];
+            }
+        }
+
+        return result;
+    };
+
+    /**
+     * Transpose and convert to Jira markup
+     */
+    pub.getJiraTranspose = function(table) {
+
+        return pub.getJira(pub.getTranspose(table));
+    }
 
     return pub;
 };

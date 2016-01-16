@@ -70,5 +70,46 @@
 
     });
 
+    describe('Table Transpose', function() {
+
+        it('Exists and is a function', function() {
+            assert.isFunction(functions.getTranspose);
+        });
+
+        it('Handles a one line string', function() {
+            var target = 'Col\tField Name\n1\ta\n2\tb\n3\tc';
+            var actual = functions.getTranspose('a\tb\tc');
+            assert.equal(actual, target);
+        });
+
+        it('Handles a multi-line string', function() {
+            var target = 'Col\tField Name\tRecord 1\tRecord 2\n1\ta\td\th\n2\tb\te\ti\n3\tc\tf\tj';
+            var actual = functions.getTranspose('a\tb\tc\nd\te\tf\nh\ti\tj');
+            assert.equal(actual, target);
+        });
+
+
+    });
+
+    describe('Jira Transpose', function() {
+
+        it('Exists and is a function', function() {
+            assert.isFunction(functions.getJiraTranspose);
+        });
+
+        it('Handles a one line string', function() {
+            var target = '||Col||Field Name||\n|1|a|\n|2|b|\n|3|c|\n';
+            var actual = functions.getJiraTranspose('a\tb\tc');
+            assert.equal(actual, target);
+        });
+
+        it('Handles a multi-line string', function() {
+            var target = '||Col||Field Name||Record 1||Record 2||\n|1|a|d|h|\n|2|b|e|i|\n|3|c|f|j|\n';
+            var actual = functions.getJiraTranspose('a\tb\tc\nd\te\tf\nh\ti\tj');
+            assert.equal(actual, target);
+        });
+
+    });
+
 
 })();

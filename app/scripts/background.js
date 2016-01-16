@@ -75,10 +75,10 @@ function onClickHandler(info, tab) {
         console.log('clicked paste Jira');
         toPaste = functions.getJira(clipboardContent);
         actionDone = 'Pasted Jira table markup';
-//    } else if (info.menuItemId === 'pasteJiraTranspose') {
-//        console.log('clicked paste Jira Transposed');
-//        toPaste = functions.getJiraTranspose(clipboardContent);
-//        actionDone = 'Pasted Jira transposed table markup';
+    } else if (info.menuItemId === 'pasteJiraTranspose') {
+        console.log('clicked paste Jira Transposed');
+        toPaste = functions.getJiraTranspose(clipboardContent);
+        actionDone = 'Pasted Jira transposed table markup';
     } else if (info.menuItemId === 'pasteJiraEscape') {
         console.log('clicked paste Jira escaped');
         toPaste = functions.escapeJira(clipboardContent);
@@ -115,13 +115,13 @@ chrome.runtime.onInstalled.addListener(function (details) {
             'parentId': parentItem,
             'contexts': ['editable']
         });
-//    chrome.contextMenus.create(
-//        {
-//            'title': 'Paste Jira Transposed Table Markup',
-//            'id': 'pasteJiraTranspose',
-//            'parentId': parentItem,
-//            'contexts': ['editable']
-//        });
+    chrome.contextMenus.create(
+        {
+            'title': 'Paste Jira Transposed Table Markup',
+            'id': 'pasteJiraTranspose',
+            'parentId': parentItem,
+            'contexts': ['editable']
+        });
     chrome.contextMenus.create(
         {
             'title': 'Paste Jira Escaped Markup',
