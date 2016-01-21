@@ -14,3 +14,5 @@ into Jira.
 - __Paste Jira Escaped Markup__ - Escapes with a backslash any Jira
   markup characters contained in the clipboard text and pastes the result.
 
+For more details, please [visit the project site](https://mgualdron.github.io/TablePlus).
+
