@@ -5,7 +5,7 @@ highlighter: pygments
 permalink: 'pretty'
 tagline: 'A Chrome Extension'
 description: 'A <a href="https://www.google.com/chrome/index.html" target="_blank">Chrome</a> extension to process clipboard text and render markup usable in Jira.'
-baseurl: /TablePlus
+baseurl: /TablePlus/
 author:
   name: 'Miguel Gualdron'
   url:  https://github.com/mgualdron
