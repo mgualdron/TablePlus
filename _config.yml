@@ -10,7 +10,7 @@ permalink:        pretty
 title:            TablePlus
 tagline:          'A Chrome Extension'
 description:      'A <a href="https://www.google.com/chrome/index.html" target="_blank">Chrome</a> extension to process clipboard text and render markup usable in Jira.'
-url:              http://mgualdron.github.io/tableplus
+url:              http://mgualdron.github.io/TablePlus
 baseurl:          /
 
 author:
@@ -23,5 +23,5 @@ paginate:         5
 # Custom vars
 version:          0.0.5
 
-github:
+github:           [Repository metadata]
   repo:           https://github.com/mgualdron/TablePlus
