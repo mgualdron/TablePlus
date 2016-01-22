@@ -1,27 +1,16 @@
-# Dependencies
-markdown:         redcarpet
-highlighter:      pygments
-
-# Permalinks
-permalink:        pretty
-# relative_permalinks: true
-
-# Setup
-title:            TablePlus
-tagline:          'A Chrome Extension'
-description:      'A <a href="https://www.google.com/chrome/index.html" target="_blank">Chrome</a> extension to process clipboard text and render markup usable in Jira.'
-url:              http://mgualdron.github.io/TablePlus
-baseurl:          /
-
+title: TablePlus
+url: https://mgualdron.github.io/TablePlus
+markdown: redcarpet
+highlighter: pygments
+permalink: 'pretty'
+tagline: 'A Chrome Extension'
+description: 'A <a href="https://www.google.com/chrome/index.html" target="_blank">Chrome</a> extension to process clipboard text and render markup usable in Jira.'
+baseurl: /
 author:
-  name:           'Miguel Gualdron'
-  url:            https://github.com/mgualdron
-
-gems:             [jekyll-paginate, jekyll-gist]
-paginate:         5
-
-# Custom vars
-version:          0.0.5
-
-github:           [Repository metadata]
-  repo:           https://github.com/mgualdron/TablePlus
+  name: 'Miguel Gualdron'
+  url:  https://github.com/mgualdron
+gems: [jekyll-paginate, jekyll-gist]
+paginate: 5
+version: 0.0.5
+github:
+  repo: "https://github.com/mgualdron/TablePlus"
