@@ -16,10 +16,9 @@ that when you are entering text you can do some enhanced pasting:
 
 ### Download
 
-Install it from the Chrome Web Store. 
+Install it from the [Chrome Web Store](https://chrome.google.com/webstore/detail/tableplus/fhgekekdakigpdfdppllmpackoklhklb)
 
 TablePlus is developed on and hosted with GitHub. Head to the <a href="https://github.com/mgualdron/TablePlus">GitHub repository</a> for code downloads, bug reports, and feature requests.
-
 
 ### Paste Jira Table Markup
 
