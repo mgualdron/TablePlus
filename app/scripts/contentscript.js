@@ -9,13 +9,38 @@
  * Taken from:
  * http://stackoverflow.com/questions/7404366/how-do-i-insert-some-text-where-the-cursor-is
  */
+
+
+/**
+ * This method appears not to be working since Chrome version 53:
+ *
+ * function insertTextAtCursor(text) {
+ *     var el = document.activeElement;
+ *     var ev = document.createEvent('TextEvent');
+ *     ev.initTextEvent('textInput', true, true, null, text);
+ *     el.focus();
+ *     el.dispatchEvent(ev);
+ * }
+ */
+
+
+// Trying a new way, also explained here:
+// http://stackoverflow.com/questions/7404366/how-do-i-insert-some-text-where-the-cursor-is
 function insertTextAtCursor(text) {
     var el = document.activeElement;
-    var e = document.createEvent('TextEvent');
-    e.initTextEvent('textInput', true, true, null, text);
-    el.focus();
-    el.dispatchEvent(e);
-};
+    var val = el.value, endIndex, range, doc = el.ownerDocument;
+    if (typeof el.selectionStart === 'number' && typeof el.selectionEnd === 'number') {
+        endIndex = el.selectionEnd;
+        el.value = val.slice(0, endIndex) + text + val.slice(endIndex);
+        el.selectionStart = el.selectionEnd = endIndex + text.length;
+    } else if (doc.selection !== 'undefined' && doc.selection.createRange) {
+        el.focus();
+        range = doc.selection.createRange();
+        range.collapse(false);
+        range.text = text;
+        range.select();
+    }
+}
 
 /**
  * Configure our toasting library.
@@ -38,16 +63,15 @@ function initializeToastr() {
         'showMethod': 'fadeIn',
         'hideMethod': 'fadeOut'
     };
-};
+}
 
 function makeSuccessToast(text) {
     initializeToastr();
     toastr.success(text);
-};
+}
 
 chrome.runtime.onMessage.addListener(
     function(request) {
-        // alert('Message from background:\n' + JSON.stringify(request));
         if (request.type === 'paste') {
             insertTextAtCursor(request.data);
         } else if (request.type === 'message') {
