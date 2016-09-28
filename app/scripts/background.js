@@ -72,15 +72,12 @@ function onClickHandler(info, tab) {
     var toPaste = '[blank]';
     var actionDone = '';
     if (info.menuItemId === 'pasteJira') {
-        console.log('clicked paste Jira');
         toPaste = functions.getJira(clipboardContent);
         actionDone = 'Pasted Jira table markup';
     } else if (info.menuItemId === 'pasteJiraTranspose') {
-        console.log('clicked paste Jira Transposed');
         toPaste = functions.getJiraTranspose(clipboardContent);
         actionDone = 'Pasted Jira transposed table markup';
     } else if (info.menuItemId === 'pasteJiraEscape') {
-        console.log('clicked paste Jira escaped');
         toPaste = functions.escapeJira(clipboardContent);
         actionDone = 'Pasted Jira escaped markup';
     } else {
@@ -97,9 +94,9 @@ chrome.runtime.onInstalled.addListener(function (details) {
     console.log('previousVersion', details.previousVersion);
 
     // We're going to create some context menu items. We need three such menus:
-    // paste reverse
-    // paste complement
-    // paste reverse complement
+    // Paste Jira Table Markup
+    // Paste Jira Transposed Table Markup
+    // Paste Jira Escaped Markup
     // This is following the example set forth in:
     // https://developer.chrome.com/extensions/samples#search:
     var parentItem = chrome.contextMenus.create(
