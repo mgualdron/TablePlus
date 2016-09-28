@@ -4,14 +4,14 @@
 var localFunctions = function() {
 
     // Regular expressions containint CR/NL:
-    var endCrRE    = /\r$/g;
-    var anyCrRE    = /\r/g;
-    var endNlRE    = /\n$/g;
-    var endsNlRE   = /^\n|\n$/g;
+    // var endCrRE    = /\r$/g;
+    // var anyCrRE    = /\r/g;
+    // var endNlRE    = /\n$/g;
+    // var endsNlRE   = /^\n|\n$/g;
+    // var anyCrNlRE  = /\r\n/g;
+    // var crOrNlRE   = /[\r\n]{1,2}/g;
+    // var endsQuotRE = /^\042|\042$/g;
     var anyNlRE    = /\n/g;
-    var anyCrNlRE  = /\r\n/g;
-    var crOrNlRE   = /[\r\n]{1,2}/g;
-    var endsQuotRE = /^\042|\042$/g;
 
     // Regular expressions with a TAB character:
     var tabRE      = /\t/g;
@@ -27,7 +27,7 @@ var localFunctions = function() {
     var pub = {};
 
     // This will be the object housing the private methods.
-    var pri = {};
+    // var pri = {};
 
     /**
      * Escape some characters in Jira markup
@@ -51,21 +51,21 @@ var localFunctions = function() {
             currentLine = currentLine.replace(startTabRE,' \t');
             currentLine = currentLine.replace(endTabRE,'\t ');
             currentLine = pub.escapeJira(currentLine);
-            if (i == 0) {
+            if (i === 0) {
                 currentLine = currentLine.replace(tabQuotRE, '||');
-                if (currentLine == "") {
-                    currentLine = " ";
+                if (currentLine === '') {
+                    currentLine = ' ';
                 }
                 currentLine = '||' + currentLine + '||\n';
             }
             else {
                 currentLine = currentLine.replace(tabQuotRE, '|');
-                if (currentLine == "") {
-                    if (i == lines.length - 1) {
+                if (currentLine === '') {
+                    if (i === lines.length - 1) {
                         break record;
                     }
                     else {
-                        currentLine = " ";
+                        currentLine = ' ';
                     }
                 }
                 currentLine = '|' + currentLine + '|\n';
@@ -83,22 +83,23 @@ var localFunctions = function() {
     pub.getTranspose = function(table) {
         var result = 'Col\tField Name';
         var lines = table.split(anyNlRE);
-        var cells = new Array();
+        // var cells = new Array();
+        var cells = [];
         record:
-        for (var i = 0; i < lines.length; i++) {
-            var currentLine = lines[i];
+        for (var k = 0; k < lines.length; k++) {
+            var currentLine = lines[k];
 
             // blank lines at the end:
-            if (currentLine == "" && i == lines.length - 1) {
+            if (currentLine === '' && k === lines.length - 1) {
                 break record;
             }
 
             // 2D array:
-            cells[i] = currentLine.split(tabRE);
+            cells[k] = currentLine.split(tabRE);
 
             // the header:
-            if (i > 0) {
-                result = result + '\tRecord ' + i;
+            if (k > 0) {
+                result = result + '\tRecord ' + k;
             }
         }
 
@@ -123,7 +124,7 @@ var localFunctions = function() {
     pub.getJiraTranspose = function(table) {
 
         return pub.getJira(pub.getTranspose(table));
-    }
+    };
 
     return pub;
 };
