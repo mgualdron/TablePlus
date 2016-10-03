@@ -1,7 +1,7 @@
 title: TablePlus
 url: https://mgualdron.github.io
 markdown: kramdown
-highlighter: pygments
+highlighter: rouge
 permalink: 'pretty'
 tagline: 'A Chrome Extension'
 description: 'A <a href="https://www.google.com/chrome/index.html" target="_blank">Chrome</a> extension to process clipboard text and render markup usable in Jira.'
