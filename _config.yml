@@ -1,6 +1,6 @@
 title: TablePlus
 url: https://mgualdron.github.io
-markdown: redcarpet
+markdown: kramdown
 highlighter: pygments
 permalink: 'pretty'
 tagline: 'A Chrome Extension'
